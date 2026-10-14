@@ -29,3 +29,18 @@ def load_ships(filename):
             'Submarine':  {'positions': {(4,1),(4,2),(4,3)}, 'hits': set()}
         }
 
+def display_board(board):
+    print("\n     "+"  ".join(str(i)for i in range(GRID_SIZE))) 
+    print("   " +"-"*(GRID_SIZE*3+1))
+    for i ,row in enumerate(board):
+        print(f'  {i} | '+"  ".join(row))
+
+def show_stats(log, ships):
+    hits = sum(1 for s in log if s ["result"] == HIT)
+    acc = (hits / len(log)*100) if log else 0  
+    print(f'\n{"="*30}')
+    print(f'  shots: {len(log)} | hits {hits } | accuracy {acc:.1f}%')
+    for name,d in ships.items():
+        sunk = d["positions"]==d["hits"]
+        print(f'  {name}: {"sunk" if sunk else "survived"} ')
+    print("="*30)
