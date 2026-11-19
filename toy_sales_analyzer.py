@@ -1,4 +1,4 @@
-mport csv
+import csv
 import matplotlib.pyplot as plt
 
 def extract(file_name):
